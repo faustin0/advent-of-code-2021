@@ -12,7 +12,7 @@ object Day2 extends Simple {
 
   def run: IO[Unit] =
     Utils
-      .readLinesFromFile("day3.txt")
+      .readLinesFromFile("day2.txt")
       .map(str => (str.split(" ")(0), str.split(" ")(1).toInt))
       .collect {
         case ("forward", x) => Horizontal(x)

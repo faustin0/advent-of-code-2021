@@ -4,6 +4,19 @@ package scripts
 import cats.effect.IO
 import cats.effect.IOApp.Simple
 
+/**
+ * It seems like the submarine can take a series of commands like forward 1, down 2, or up 3:
+ *
+ * down X increases your aim by X units.
+ *
+ *    up X decreases your aim by X units.
+ *
+ *    forward X does two things:
+ *
+ *        * It increases your horizontal position by X units.
+ *
+ *        * It increases your depth by your aim multiplied by X.
+ */
 object Day2_2 extends Simple {
 
   sealed trait Movement
@@ -12,7 +25,7 @@ object Day2_2 extends Simple {
 
   def run: IO[Unit] =
     Utils
-      .readLinesFromFile("day3.txt")
+      .readLinesFromFile("day2.txt")
       .map(str => (str.split(" ")(0), str.split(" ")(1).toInt))
       .collect {
         case ("forward", x) => Horizontal(x)
