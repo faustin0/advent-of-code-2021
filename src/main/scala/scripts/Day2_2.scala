@@ -1,5 +1,5 @@
-package com.ynap.scripts
-package adventofcode
+package com.faustin0.aoc
+package scripts
 
 import cats.effect.IO
 import cats.effect.IOApp.Simple
@@ -7,8 +7,8 @@ import cats.effect.IOApp.Simple
 object Day2_2 extends Simple {
 
   sealed trait Movement
-  case class Horizontal(pos: Int) extends Movement
-  case class Depth(pos: Int)      extends Movement
+  case class Horizontal(pos: Long) extends Movement
+  case class Depth(pos: Long)      extends Movement
 
   def run: IO[Unit] =
     Utils
@@ -20,11 +20,11 @@ object Day2_2 extends Simple {
         case ("down", x)    => Depth(x)
       }
       .compile
-      .fold((0, 0, 1)) { case ((pos, depth, aim), curr) =>
+      .fold((0L, 0L, 0L)) { case ((pos, depth, aim), curr) =>
         curr match {
-          case Horizontal(x) => (pos + x, depth + (pos * aim), aim + x)
-          case Depth(x)      => (pos, depth + pos, aim + x)
+          case Horizontal(x) => (pos + x, depth + (x * aim), aim)
+          case Depth(x)      => (pos, depth, aim + x)
         }
       }
-      .flatMap { case (x, y, a) => IO(println(x * y)) }
+      .flatMap { case (pos, depth, a) => IO(println(pos * depth)) }
 }

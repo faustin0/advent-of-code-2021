@@ -1,10 +1,8 @@
-package com.ynap.scripts
-package adventofcode
+package com.faustin0.aoc
+package scripts
 
+import cats.effect.IO
 import cats.effect.IOApp.Simple
-import cats.effect.{ ExitCode, IO, IOApp }
-
-import java.nio.file.Path
 
 /**
  * --- Part Two ---
@@ -45,9 +43,10 @@ import java.nio.file.Path
  */
 object Day1_2 extends Simple {
 
-//1359
+  //1359
   def run: IO[Unit] =
-    Utils.readLinesFromFile("day1.txt")
+    Utils
+      .readLinesFromFile("day1.txt")
       .map(s => s.toInt)
       .sliding(3)
       .map(chunk => chunk.foldLeft(0)(_ + _))

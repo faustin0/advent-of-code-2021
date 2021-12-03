@@ -1,10 +1,8 @@
-package com.ynap.scripts
-package adventofcode
+package com.faustin0.aoc
+package scripts
 
 import cats.effect.IO
 import cats.effect.IOApp.Simple
-
-
 
 object Day2 extends Simple {
 
